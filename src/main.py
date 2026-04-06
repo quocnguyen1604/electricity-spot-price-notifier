@@ -33,6 +33,8 @@ def run_once():
 def main():
     global electricity_api, margin, discord_webhook_url
 
+    print("Starting the electricity price monitoring application...")
+
     load_dotenv()
     base_url = os.getenv("BASE_URL")
     tulos = os.getenv("TULOS")
@@ -43,6 +45,7 @@ def main():
 
     while True:
         wait_until_next_hour()
+        print(f"Running the price check at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         run_once()
 
 
