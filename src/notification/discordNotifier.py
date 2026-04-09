@@ -1,14 +1,14 @@
 import requests
 import rich
 
-def sendDiscordNotification(webhook_url, isHigh, currentPrice, averagePrice):
+def sendDiscordNotification(webhook_url, isHigh, currentPrice, nextHourPrice, averagePrice):
     if isHigh:
         embedded_message = {
             "content": f'<@&1490439901085171904>',
             "embeds": [
                 {
                     "title": "TẮT ĐIỆN MẸ ĐI",
-                    "description": f"Giá: {currentPrice} c/kWh\nTrung Bình: {averagePrice} c/kWh",
+                    "description": f"Giá: {currentPrice} c/kWh\nGiá giờ tiếp theo : {nextHourPrice} c/kWh\nTrung Bình: {averagePrice} c/kWh",
                     "color": 0xFF0000
                 }
             ]
@@ -19,7 +19,7 @@ def sendDiscordNotification(webhook_url, isHigh, currentPrice, averagePrice):
             "embeds": [
                 {
                     "title": "TẸT GA ĐÊ",
-                    "description": f"Giá: {currentPrice} c/kWh\nTrung Bình: {averagePrice} c/kWh",
+                    "description": f"Giá: {currentPrice} c/kWh\nGiá giờ tiếp theo : {nextHourPrice} c/kWh\nTrung Bình: {averagePrice} c/kWh",
                     "color": 0x00FF00
                 }
             ]

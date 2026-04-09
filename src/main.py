@@ -24,7 +24,7 @@ def run_once():
     ana_result = ana.isCurrentHourPriceHigh(transformed_price)
 
     discordNotifier.sendDiscordNotification(
-        discord_webhook_url, ana_result[0], ana_result[1], ana_result[2]
+        discord_webhook_url, ana_result[0], ana_result[1], ana_result[2], ana_result[3]
     )
 
     print(transformed_price)
