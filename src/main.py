@@ -23,9 +23,7 @@ def run_once():
     transformed_price = transform.transformPriceData(spot_price, float(margin))
     ana_result = ana.isCurrentHourPriceHigh(transformed_price)
 
-    discordNotifier.sendDiscordNotification(
-        discord_webhook_url, ana_result[0], ana_result[1], ana_result[2], ana_result[3]
-    )
+    discordNotifier.sendDiscordNotification(discord_webhook_url, ana_result)
 
     print(transformed_price)
 
