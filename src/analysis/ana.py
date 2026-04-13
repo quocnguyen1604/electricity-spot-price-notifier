@@ -39,7 +39,7 @@ def isCurrentHourPriceHigh(data, activeHourStart=7, activeHourEnd=23):
     # Classify current hour into band
     def classify_band(price):
         if price <= p25:
-            return ' Giá rẻ'
+            return 'Giá rẻ'
         elif price >= p75:
             return 'Đắt'
         else:

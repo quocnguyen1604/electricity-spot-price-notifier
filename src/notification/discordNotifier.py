@@ -30,30 +30,34 @@ def sendDiscordNotification(webhook_url, ana_result):
     
     # Recommendation emoji and message with ANSI color codes
     recommendation_map = {
-        'Tranh thủ đi th lồn': ' Tranh thủ đi th lồn - Giá đang rẻ',
-        'Đợi tí cho rẻ hơn': '⏸ ĐỢI CHO RẺ HƠN ĐÊ',
-        'Giá bình thường': ' GIÁ BÌNH THƯỜNG - dùng ổn'
+        'Tranh thủ đi th lồn': '✅ DÙNG NGAY - Giá rẻ',
+        'Đợi tí cho rẻ hơn': '⏸️ ĐỢI CHO RẺ HƠN ĐÊ',
+        'Giá bình thường': '😐 BÌNH THƯỜNG - dùng ổn'
     }
     recommendation_msg = recommendation_map.get(recommendation, recommendation)
     
-    # Define ANSI color codes for Discord
+    # Define ANSI color codes for Discord based on current price band
     # \u001b[1;32m: Bold Green (Cheap)
     # \u001b[1;33m: Bold Yellow (Normal)
     # \u001b[1;31m: Bold Red (Expensive)
     # \u001b[0m: Reset color
     
-    if current_band == "Giá rẻ":
-        color_code = "\u001b[1;32m"  # Green
-    elif current_band == "Giá bình thường":
-        color_code = "\u001b[1;33m"  # Yellow
-    else:  # Đắt
-        color_code = "\u001b[1;31m"  # Red
+    current_band_clean = current_band.strip() if current_band else ""
+    
+    if current_band_clean == "Giá rẻ":
+        color_code = "\u001b[1;32m"  # Green - Cheap
+    elif current_band_clean == "Giá bình thường":
+        color_code = "\u001b[1;33m"  # Yellow - Normal
+    elif current_band_clean == "Đắt":
+        color_code = "\u001b[1;31m"  # Red - Expensive
+    else:
+        color_code = "\u001b[1;37m"  # White - Default
     
     # Create colored recommendation line
     colored_recommendation = f"```ansi\n{color_code}{recommendation_msg}\u001b[0m\n```"
     
     # Determine if should notify (only on expensive or waiting opportunities)
-    should_notify = current_band == 'Đắt' or recommendation in ['Tranh thủ đi th lồn', 'Đợi tí cho rẻ hơn']
+    should_notify = current_band == 'Đắt' or recommendation in ['Đợi tí cho rẻ hơn'] 
     
     if should_notify:
         mention = '<@&1490439901085171904>'
