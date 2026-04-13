@@ -50,15 +50,16 @@ def isCurrentHourPriceHigh(data, activeHourStart=7, activeHourEnd=23):
     
     # Smart recommendation based on current and next hour comparison
     if currentBand == 'Đắt':
-        if nextBand == 'Giá rẻ' or nextBand == 'Giá bình thường':
-            recommendation = 'Đợi tí cho rẻ hơn'  # Wait for cheaper prices
-        else:
-            recommendation = 'Tranh thủ đi th lồn'  # No cheaper option soon
+        recommendation = 'Đợi tí cho rẻ hơn'  # No cheaper option soon
+
     elif currentBand == 'Giá rẻ':
         recommendation = 'Tranh thủ đi th lồn'
+        
     else:  # normal
         if nextBand == 'Đắt':
             recommendation = 'Tranh thủ đi th lồn'  # Prices going up
+        elif nextBand == 'Giá rẻ':
+            recommendation = 'Đợi tí cho rẻ hơn'  # Prices going down
         else:
             recommendation = 'Giá bình thường'  # No strong recommendation
     
