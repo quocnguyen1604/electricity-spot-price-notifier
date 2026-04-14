@@ -41,6 +41,14 @@ def test_run_once():
         print(f"   BASE_URL: {base_url}")
         print(f"   MARGIN: {margin}")
         
+        # Check if within active hours
+        current_hour = datetime.now().hour
+        print(f"\n📍 Current hour: {current_hour}")
+        if not (7 <= current_hour <= 23):
+            print(f" Current hour {current_hour} is outside active hours (7-23).")
+            print("   Skipping notification to avoid sending outside active window.")
+            return True
+        
         # Get electricity data
         print("\n🔄 Fetching electricity prices...")
         electricity_api = electricity.ElectricityAPI(base_url, tulos)

@@ -18,6 +18,12 @@ def wait_until_next_hour():
 
 def run_once():
     date = datetime.now().strftime("%Y-%m-%d")
+    current_hour = datetime.now().hour
+    
+    # Only check and notify during active hours (7 to 23)
+    if not (7 <= current_hour <= 23):
+        print(f"Outside active hours (7-23). Current hour: {current_hour}. Skipping notification.")
+        return
 
     spot_price = electricity_api.getSpotPrice(date)
     transformed_price = transform.transformPriceData(spot_price, float(margin))
