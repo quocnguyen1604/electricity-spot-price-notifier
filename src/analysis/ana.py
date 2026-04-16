@@ -63,9 +63,9 @@ def isCurrentHourPriceHigh(data, activeHourStart=7, activeHourEnd=23):
         else:
             recommendation = 'Giá bình thường'  # No strong recommendation
     
-    print(f"Current hour: {currentHour}")
-    print(f"Current price: {currentPrice} ({currentBand}) | Next price: {nextHourPrice} ({nextBand})")
-    print(f"Recommendation: {recommendation}")
+    # print(f"Current hour: {currentHour}")
+    # print(f"Current price: {currentPrice} ({currentBand}) | Next price: {nextHourPrice} ({nextBand})")
+    # print(f"Recommendation: {recommendation}")
     
     return {
         'currentHour': currentHour,
