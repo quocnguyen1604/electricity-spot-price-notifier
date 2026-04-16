@@ -36,12 +36,6 @@ def sendDiscordNotification(webhook_url, ana_result):
     }
     recommendation_msg = recommendation_map.get(recommendation, recommendation)
     
-    # Define ANSI color codes for Discord based on current price band
-    # \u001b[1;32m: Bold Green (Cheap)
-    # \u001b[1;33m: Bold Yellow (Normal)
-    # \u001b[1;31m: Bold Red (Expensive)
-    # \u001b[0m: Reset color
-    
     current_band_clean = current_band.strip() if current_band else ""
     
     if current_band_clean == "Giá rẻ":
@@ -57,7 +51,7 @@ def sendDiscordNotification(webhook_url, ana_result):
     colored_recommendation = f"```ansi\n{color_code}{recommendation_msg}\u001b[0m\n```"
     
     # Determine if should notify (only on expensive or waiting opportunities)
-    should_notify = current_band == 'Đắt' or recommendation in ['Đợi tí cho rẻ hơn'] 
+    should_notify = current_band == 'Đắt' 
     
     if should_notify:
         mention = '<@&1490439901085171904>'
